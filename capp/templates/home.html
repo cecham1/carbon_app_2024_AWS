@@ -1,40 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<!-- Queries -->
-<section class="section_developers">
-  <div class="container">
-
-    <div class="developers" style="display:block;">
-      <h5>Query 1: Kilometers by user</h5>
-        {{user_name}}:
-        {%for transport in user_transports %}   
-          {{transport.kms}}
-        {% endfor %}
-        {{len_list}}
-      <h5>Query 2: Round kilometers by user</h5>
-        {{user_name}}:
-        {{kms}} 
-      <h5>Query 3: Maximum kilometers by user</h5>
-        {{user_name}}:
-        {{max_kms}}
-      <h5>Query 4: Co2 per kilometer by user </h5>
-        {{user_name}}:
-        {{kms}} 
-        {{co2}} 
-        {{co2_kms}}
-      <h5>Query 5: Maximum Co2 per kilometer by user </h5>
-        {{user_name}}:
-        {{max_co2_kms}}
-      <h5>Query 6: Type of transport with maximum Co2 per kilometer by user  </h5>  
-        {{user_name}}:
-        {{type}}
-        {{transport_max_co2_kms}}
-    </div>
-
-  </div>          
-</section>
-
 
 <!-- Header -->
 <section class="section_header_home">
@@ -55,6 +21,8 @@
         <p style="text-align:left;">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat dolores quos asperiores repellendus facilis cum illo aperiam odit doloremque nostrum. Totam excepturi labore voluptatibus iusto sapiente quisquam consectetur optio magnam voluptates omnis vel officia alias distinctio quas laborum reiciendis ratione inventore veniam, cupiditate doloribus dolore, eius natus a. Magni inventore consequuntur voluptas reprehenderit perferendis! Molestias aspernatur rem autem aut temporibus.
         </p>
+        {% if current_user.is_authenticated %}
+        {% else %}
         <div class="container_buttons_links_header_home">
           <div class="btn">
               <a href="{{url_for('users.register')}}" class="btn btn-primary btn-lg mr-2", style="background-color:#007bff;">Register</a>
@@ -62,7 +30,8 @@
           <div class="btn">
               <a href="{{url_for('users.login')}}" class="btn btn-primary btn-lg mr-2", style="background-color:#007bff;">Login</a>
           </div>
-        </div>  
+        </div>
+        {% endif %}
       </div>
       <div class="box">
         <img 
